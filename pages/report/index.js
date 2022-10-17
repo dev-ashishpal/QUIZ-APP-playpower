@@ -16,7 +16,7 @@ const ReportSummary = () => {
   const [openModal, setOpenModal] = useState(false);
   const { value } = useContext(ReportContext);
   const score = 0;
-  const totalScore = value.length;
+  const totalScore = value?.length;
 
   // Redirect to homepage if the invitation code is not found.
   useEffect(() => {

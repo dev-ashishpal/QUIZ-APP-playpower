@@ -13,13 +13,13 @@ const firebaseConfig = {
   measurementId: "G-JCPS9MJ9Q8",
 };
 
-export let app;
+// export let app;
 // Initialize Firebase
-if (getApps().length) {
-  app = getApp();
-} else {
-  app = initializeApp(firebaseConfig);
-}
-
+// if (getApps().length) {
+//   app = getApp();
+// } else {
+//   app = initializeApp(firebaseConfig);
+// }
+const app = initializeApp(firebaseConfig);
 // export const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

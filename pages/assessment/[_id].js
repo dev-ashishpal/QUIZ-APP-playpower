@@ -9,8 +9,10 @@ import classes from "./assessment.module.css";
 import { ReportContext } from "../../context/report";
 import { removeItem } from "../../utils/grade";
 import Question from "../../components/Question/Question";
-import { db } from "../../config/firebase";
-import { getDoc, doc } from "firebase/firestore";
+// import { db } from "../../config/firebase";
+// import { getDoc, doc } from "firebase/firestore";
+
+import { quiz } from "../../external";
 
 const Assessment = () => {
   // Declaring and Initializing Variables.
@@ -27,16 +29,38 @@ const Assessment = () => {
   const layoutLeftRef = useRef();
 
   // Getting docRef from firebase with given assessmentId.
-  const docRef = doc(db, "assessment", assessmentId);
+  // console.log("db", db);
+  // let docRef;
+  // if (db) {
+  //   docRef = doc(db, "assessment", assessmentId);
+  //   console.log('entered into db statement');
+  // } else {
+  //   console.log("big error has been occurred!!!!!");
+  // }
 
   // Getting MCQ Quiz from Firebase.
+  // const docRef = doc(db, "assessment", assessmentId);
+  // useEffect(() => {
+  //   if (db) {
+  //     const getData = async () => {
+  //       try {
+  //         const response = await getDoc(docRef);
+  //         const data = { ...response.data(), id: response.id };
+  //         console.log("data", data);
+  //         setStatus(data.data);
+  //       } catch (e) {
+  //         console.log("an error is thrown.");
+  //       }
+  //     };
+  //     getData();
+  //     // } else {
+  //     //   router.replace("/");
+  //   }
+  // }, [db]);
+
   useEffect(() => {
-    const getData = async () => {
-      const response = await getDoc(docRef);
-      const data = { ...response.data(), id: response.id };
-      setStatus(data.data);
-    };
-    getData();
+    const response = quiz[assessmentId].data;
+    setStatus([...response]);
   }, []);
 
   // Function to toggle DOM Layout on small Screen devices.
@@ -80,7 +104,8 @@ const Assessment = () => {
     const singleStatus = { ...updatedStatus[counter] };
 
     if (singleStatus.type == "multiple") {
-      if (singleStatus.answer.includes(value)) removeItem(singleStatus.answer, value);
+      if (singleStatus.answer.includes(value))
+        removeItem(singleStatus.answer, value);
       else singleStatus.answer.push(value);
     } else singleStatus.answer = value;
 
@@ -100,6 +125,7 @@ const Assessment = () => {
 
   // Function to store user result in Context on submitting.
   const onSubmit = () => {
+    console.log(status);
     setValue(status);
   };
 

@@ -6,14 +6,16 @@ import { BsArrowRight, BsXLg } from "react-icons/bs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { getDoc, doc } from "firebase/firestore";
+// import { getDoc, doc } from "firebase/firestore";
+
+import { quiz } from "../external";
 
 import classes from "../styles/Home.module.css";
 import Box from "../components/Box/Box";
 import Button from "../components/UI/Button/Button";
 
 import { InvitationContext } from "../context/invitation";
-import { db } from "../config/firebase";
+// import { db } from "../config/firebase";
 
 const Home = () => {
   // calling router.
@@ -46,10 +48,24 @@ const Home = () => {
 
   // Function to check if invitation code is exists or not.
   const joinAssess = async () => {
-    const docRef = doc(db, "assessment", expectedCode);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      router.push(`/instruction`);
+      // const docRef = doc(db, "assessment", expectedCode);
+      // const docSnap = await getDoc(docRef);
+      // if (docSnap.exists()) {
+      //   router.push(`/instruction`);
+      // } else {
+      //   toast.error("Invalid Invitation code!!!", {
+      //     position: "top-center",
+      //     autoClose: 2000,
+      //     hideProgressBar: false,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //     theme: "light",
+      //   });
+      // }
+    if(expectedCode in quiz) {
+      router.push('/instruction');
     } else {
       toast.error("Invalid Invitation code!!!", {
         position: "top-center",
