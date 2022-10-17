@@ -32,7 +32,7 @@ const ReportSummary = () => {
       if (val.answer == val.correctAnswer) score++;
     }
   }
-  
+
   const percent = score / totalScore;
   const { name, color } = grade(percent);
 
@@ -44,7 +44,7 @@ const ReportSummary = () => {
   const closeHandler = () => {
     setOpenModal(false);
   };
-  
+
   return (
     <section className={classes.Container}>
       <SummaryCard show={openModal} clicked={closeHandler} data={value} />

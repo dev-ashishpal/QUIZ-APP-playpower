@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 export const ReportContext = React.createContext();
 
 export const Report = ({ children }) => {
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
   return (
     <ReportContext.Provider
       value={{

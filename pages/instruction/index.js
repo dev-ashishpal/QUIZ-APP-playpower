@@ -24,7 +24,7 @@ const Instruction = () => {
     if (!value) router.replace("/");
   }, [value]);
 
-  
+
   return (
     <section className={classes.Instruction}>
       <header className={classes.InstructionHeader}>
@@ -51,7 +51,7 @@ const Instruction = () => {
             on which appears on the right side of question window.
           </li>
           <li>
-            You can click on your "Profile" image on top right corner of your
+            You can click on your Profile image on top right corner of your
             screen to change the language during the exam for entire question
             paper. On clicking of Profile image you will get a drop-down to
             change the question content to the desired language.
@@ -72,7 +72,7 @@ const Instruction = () => {
             procedure for answering that type of question.
           </li>
           <li>
-            You can click on your "Profile" image on top right corner of your
+            You can click on your Profile image on top right corner of your
             screen to change the language during the exam for entire question
             paper. On clicking of Profile image you will get a drop-down to
             change the question content to the desired language.
