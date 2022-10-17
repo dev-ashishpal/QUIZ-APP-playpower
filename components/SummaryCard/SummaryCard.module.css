@@ -71,3 +71,15 @@
   box-shadow: 0 0 5px #4ade80;
   width: 10rem;
 }
+
+.Image {
+  height: 7rem;
+  width: 10rem;
+}
+
+.Image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}

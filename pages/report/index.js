@@ -9,6 +9,7 @@ import { ReportContext } from "../../context/report";
 import { useRouter } from "next/router";
 import { grade, checkAnswer } from "../../utils/grade";
 import SummaryCard from "../../components/SummaryCard/SummaryCard";
+import SEO from "../../components/SEO";
 
 const ReportSummary = () => {
   // Declaring and Initializing variables.
@@ -46,34 +47,36 @@ const ReportSummary = () => {
   };
 
   return (
-    <section className={classes.Container}>
-      <SummaryCard show={openModal} clicked={closeHandler} data={value} />
-      <header className={classes.Header}>
-        <h1>Congratulations!!!</h1>
-      </header>
-      <div className={classes.Box}>
-        <div className={classes.BoxInner}>
-          <h2>Your Score</h2>
-          <p className={classes.Score}>
-            {score} / {totalScore}
-          </p>
-          <p style={{ color: `${color}` }} className={classes.Grade}>
-            {name}
-          </p>
+    <SEO title="Report">
+      <section className={classes.Container}>
+        <SummaryCard show={openModal} clicked={closeHandler} data={value} />
+        <header className={classes.Header}>
+          <h1>Congratulations!!!</h1>
+        </header>
+        <div className={classes.Box}>
+          <div className={classes.BoxInner}>
+            <h2>Your Score</h2>
+            <p className={classes.Score}>
+              {score} / {totalScore}
+            </p>
+            <p style={{ color: `${color}` }} className={classes.Grade}>
+              {name}
+            </p>
+          </div>
         </div>
-      </div>
-      <div className={classes.Detail}>
-        <button onClick={openHandler}>
-          <span>View Detailed Report</span>
-          <span>
-            <BsArrowRight />
-          </span>
-        </button>
-      </div>
-      <div className={classes.RedirectBtn}>
-        <Link href="/">Go to Homepage</Link>
-      </div>
-    </section>
+        <div className={classes.Detail}>
+          <button onClick={openHandler}>
+            <span>View Detailed Report</span>
+            <span>
+              <BsArrowRight />
+            </span>
+          </button>
+        </div>
+        <div className={classes.RedirectBtn}>
+          <Link href="/">Go to Homepage</Link>
+        </div>
+      </section>
+    </SEO>
   );
 };
 

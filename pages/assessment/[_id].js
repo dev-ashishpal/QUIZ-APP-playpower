@@ -9,10 +9,10 @@ import classes from "./assessment.module.css";
 import { ReportContext } from "../../context/report";
 import { removeItem } from "../../utils/grade";
 import Question from "../../components/Question/Question";
-// import { db } from "../../config/firebase";
-// import { getDoc, doc } from "firebase/firestore";
+
 
 import { quiz } from "../../external";
+import SEO from "../../components/SEO";
 
 const Assessment = () => {
   // Declaring and Initializing Variables.
@@ -21,6 +21,7 @@ const Assessment = () => {
   const assessmentId = router.query._id;
   const [counter, setCounter] = useState(0);
   const [status, setStatus] = useState(null);
+  const [testName, setTestName] = useState(null);
   const noOfQuestion = status ? status.length : 0;
 
   // Creating REF to manipulate DOM on small screen devices.
@@ -28,39 +29,10 @@ const Assessment = () => {
   const layoutRightRef = useRef();
   const layoutLeftRef = useRef();
 
-  // Getting docRef from firebase with given assessmentId.
-  // console.log("db", db);
-  // let docRef;
-  // if (db) {
-  //   docRef = doc(db, "assessment", assessmentId);
-  //   console.log('entered into db statement');
-  // } else {
-  //   console.log("big error has been occurred!!!!!");
-  // }
-
-  // Getting MCQ Quiz from Firebase.
-  // const docRef = doc(db, "assessment", assessmentId);
-  // useEffect(() => {
-  //   if (db) {
-  //     const getData = async () => {
-  //       try {
-  //         const response = await getDoc(docRef);
-  //         const data = { ...response.data(), id: response.id };
-  //         console.log("data", data);
-  //         setStatus(data.data);
-  //       } catch (e) {
-  //         console.log("an error is thrown.");
-  //       }
-  //     };
-  //     getData();
-  //     // } else {
-  //     //   router.replace("/");
-  //   }
-  // }, [db]);
-
   useEffect(() => {
     const response = quiz[assessmentId].data;
     setStatus([...response]);
+    setTestName(quiz[assessmentId].name);
   }, []);
 
   // Function to toggle DOM Layout on small Screen devices.
@@ -148,77 +120,81 @@ const Assessment = () => {
   }
 
   return (
-    <div className={classes.Container} ref={layoutRef}>
-      <section className={classes.Questions} ref={layoutLeftRef}>
-        <div className={classes.Toggle} onClick={toggleLayout}>
-          <BsList />
-        </div>
-        <header className={classes.QuestionsBox}>
-          <h1>
-            <span>
-              <BsFillInfoCircleFill />
-            </span>
-            <span>
-              Question No. {status && status[counter].ques} of {noOfQuestion}
-            </span>
-          </h1>
-          <div className={classes.Timer}>
-            <div className={classes.TimerInner}>00</div>
-            <div className={classes.TimerInner}>04</div>
-            <div className={classes.TimerInner}>28</div>
+    <SEO title="Assessment">
+      <div className={classes.Container} ref={layoutRef}>
+        <section className={classes.Questions} ref={layoutLeftRef}>
+          <div className={classes.Toggle} onClick={toggleLayout}>
+            <BsList />
           </div>
-        </header>
-        <div className={classes.QuestionLayout}>
-          {status ? (
-            <Question data={status[counter]} onChange={inputChangeHandler} />
-          ) : null}
-        </div>
-        <button onClick={clearSelection} className={classes.Clear}>
-          Clear Selection
-        </button>
-        <div className={classes.ButtonContainer}>
-          <button onClick={prevQues} className={classes.Btn}>
-            Prev
+
+          <header className={classes.QuestionsBox}>
+            <h1>
+              <span>
+                <BsFillInfoCircleFill />
+              </span>
+              <span>
+                Question No. {status && status[counter].ques} of {noOfQuestion}
+              </span>
+            </h1>
+            {/* <div className={classes.Timer}>
+              <div className={classes.TimerInner}>00</div>
+              <div className={classes.TimerInner}>04</div>
+              <div className={classes.TimerInner}>28</div>
+            </div> */}
+          </header>
+          <div className={classes.QuestionLayout}>
+            {status ? (
+              <Question data={status[counter]} onChange={inputChangeHandler} />
+            ) : null}
+          </div>
+          <button onClick={clearSelection} className={classes.Clear}>
+            Clear Selection
           </button>
-          {button}
-        </div>
-      </section>
-      <section className={classes.Info} ref={layoutRightRef}>
-        <div className={classes.Toggle} onClick={toggleLayout}>
-          <BsXLg />
-        </div>
-        <header>
-          <h2>Data Log</h2>
-        </header>
-        <div className={classes.PrevBox}>
-          {status
-            ? status.map((dt) => {
-                const color = [classes.PrevBoxGrey];
-                if (dt.visited && dt.answer) {
-                  color.pop(classes.PrevBoxGrey);
-                  color.pop(classes.PrevBoxYellow);
-                  color.push(classes.PrevBoxGreen);
-                } else if (dt.visited) {
-                  color.pop(classes.PrevBoxGrey);
-                  color.pop(classes.PrevBoxGreen);
-                  color.push(classes.PrevBoxYellow);
-                }
-                return (
-                  <div
-                    className={color.join(" ")}
-                    key={dt.ques}
-                    onClick={() => {
-                      setQues(dt.ques);
-                    }}
-                  >
-                    <span>{dt.ques}</span>
-                  </div>
-                );
-              })
-            : null}
-        </div>
-      </section>
-    </div>
+          <div className={classes.ButtonContainer}>
+            <button onClick={prevQues} className={classes.Btn}>
+              Prev
+            </button>
+            {button}
+          </div>
+        </section>
+        <section className={classes.Info} ref={layoutRightRef}>
+          <div className={classes.Toggle} onClick={toggleLayout}>
+            <BsXLg />
+          </div>
+          <div className={classes.Name}>{testName}</div>
+          <header>
+            <h2>Data Log</h2>
+          </header>
+          <div className={classes.PrevBox}>
+            {status
+              ? status.map((dt) => {
+                  const color = [classes.PrevBoxGrey];
+                  if (dt.visited && dt.answer) {
+                    color.pop(classes.PrevBoxGrey);
+                    color.pop(classes.PrevBoxYellow);
+                    color.push(classes.PrevBoxGreen);
+                  } else if (dt.visited) {
+                    color.pop(classes.PrevBoxGrey);
+                    color.pop(classes.PrevBoxGreen);
+                    color.push(classes.PrevBoxYellow);
+                  }
+                  return (
+                    <div
+                      className={color.join(" ")}
+                      key={dt.ques}
+                      onClick={() => {
+                        setQues(dt.ques);
+                      }}
+                    >
+                      <span>{dt.ques}</span>
+                    </div>
+                  );
+                })
+              : null}
+          </div>
+        </section>
+      </div>
+    </SEO>
   );
 };
 

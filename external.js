@@ -56,7 +56,7 @@ export const quiz = {
         ques: 6,
         question: "What does JavaScript debugger do?",
         answer: "",
-        correctAnswer: "It acts as a breakpoint",
+        correctAnswer: "It acts as a breakpoint in  a program",
         options: [
           "It will debug all the errors in the program at runtime",
           "It acts as a breakpoint in a program",

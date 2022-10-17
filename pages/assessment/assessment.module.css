@@ -11,7 +11,7 @@
 }
 
 .Info {
-  margin-top: 9rem;
+  margin-top: 4rem;
   margin-right: 2rem;
 }
 
@@ -36,7 +36,7 @@
     transform: translateX(1rem);
   }
   .InfoToggle {
-    margin: 3.7rem 2rem;
+    margin: 2rem 2rem;
     transform: translateX(0);
   }
 
@@ -207,4 +207,10 @@
     height: 1.3rem;
     cursor: pointer;
   }
+}
+
+.Name {
+  font-weight: 600;
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }

@@ -5,6 +5,7 @@ import { BsArrowRight, BsXLg } from "react-icons/bs";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SEO from "../components/SEO";
 
 // import { getDoc, doc } from "firebase/firestore";
 
@@ -15,7 +16,6 @@ import Box from "../components/Box/Box";
 import Button from "../components/UI/Button/Button";
 
 import { InvitationContext } from "../context/invitation";
-// import { db } from "../config/firebase";
 
 const Home = () => {
   // calling router.
@@ -48,22 +48,6 @@ const Home = () => {
 
   // Function to check if invitation code is exists or not.
   const joinAssess = async () => {
-      // const docRef = doc(db, "assessment", expectedCode);
-      // const docSnap = await getDoc(docRef);
-      // if (docSnap.exists()) {
-      //   router.push(`/instruction`);
-      // } else {
-      //   toast.error("Invalid Invitation code!!!", {
-      //     position: "top-center",
-      //     autoClose: 2000,
-      //     hideProgressBar: false,
-      //     closeOnClick: true,
-      //     pauseOnHover: true,
-      //     draggable: true,
-      //     progress: undefined,
-      //     theme: "light",
-      //   });
-      // }
     if(expectedCode in quiz) {
       router.push('/instruction');
     } else {
@@ -81,6 +65,7 @@ const Home = () => {
   };
 
   return (
+    <SEO title="Homepage">
     <section>
       {/* popup modal on error. */}
       <ToastContainer
@@ -209,7 +194,7 @@ const Home = () => {
             <div className={classes.JoinForm}>
               <input
                 onChange={inputChangeHandler}
-                placeholder="Enter the invitation code: eg- 123456"
+                placeholder="Enter invite code: eg- 12345"
                 type="text"
               />
               <Button onClick={joinAssess} color="green">
@@ -226,6 +211,7 @@ const Home = () => {
         </div>
       </div>
     </section>
+    </SEO>
   );
 };
 

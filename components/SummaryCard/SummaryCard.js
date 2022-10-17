@@ -31,27 +31,41 @@ const SummaryCard = (props) => {
               <div className={yourAnsHeader.join(" ")}>Your Answer</div>
             </article>
             {props.data.map((dt) => {
+              let ans;
+              let corrAns;
+              if (dt.type == "single") {
+                ans = <span>dt.answer</span>;
+                corrAns = <span>dt.correctAnswer</span>;
+              } else if (dt.type == "multiple") {
+                ans = <span>{dt.answer.join(" ")}</span>;
+                corrAns = <span>{dt.correctAnswer.join(" ")}</span>;
+              } else if (dt.type == "image") {
+                ans = (
+                  <figure className={classes.Image}>
+                    <img src={dt.answer} alt="image" />
+                  </figure>
+                );
+                corrAns = (
+                  <figure className={classes.Image}>
+                    <img src={dt.correctAnswer} alt="image" />
+                  </figure>
+                );
+              }
               let flag = true;
               if (dt.type == "multiple") {
                 flag = checkAnswer(dt);
               } else if (dt.answer != dt.correctAnswer) flag = false;
               return (
                 <article
-                key={dt.ques}
+                  key={dt.ques}
                   style={{
                     backgroundColor: flag ? "#94f4b7" : "#ff8a8a",
                   }}
                   className={classes.Slot}
                 >
                   <div className={classes.Question}>{dt.question}</div>
-                  <div className={classes.CorrectAns}>
-                    {dt.type == "multiple"
-                      ? dt.correctAnswer.join(" ")
-                      : dt.correctAnswer}
-                  </div>
-                  <div className={classes.YourAns}>
-                    {dt.type == "multiple" ? dt.answer.join(" ") : dt.answer}
-                  </div>
+                  <div className={classes.CorrectAns}>{corrAns}</div>
+                  <div className={classes.YourAns}>{ans}</div>
                 </article>
               );
             })}
