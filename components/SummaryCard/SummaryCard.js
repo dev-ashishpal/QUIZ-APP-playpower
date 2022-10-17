@@ -34,8 +34,8 @@ const SummaryCard = (props) => {
               let ans;
               let corrAns;
               if (dt.type == "single") {
-                ans = <span>dt.answer</span>;
-                corrAns = <span>dt.correctAnswer</span>;
+                ans = <span>{dt.answer}</span>;
+                corrAns = <span>{dt.correctAnswer}</span>;
               } else if (dt.type == "multiple") {
                 ans = <span>{dt.answer.join(" ")}</span>;
                 corrAns = <span>{dt.correctAnswer.join(" ")}</span>;
@@ -50,6 +50,9 @@ const SummaryCard = (props) => {
                     <img src={dt.correctAnswer} alt="image" />
                   </figure>
                 );
+              } else if (dt.type == "blank") {
+                ans = <span>{dt.answer}</span>;
+                corrAns = <span>{dt.correctAnswer}</span>;
               }
               let flag = true;
               if (dt.type == "multiple") {
