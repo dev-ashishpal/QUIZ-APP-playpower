@@ -1,0 +1,10 @@
+.Box {
+	box-shadow: 0 2px 5px #ddd;
+	border-radius: 5px;
+	max-height: 30rem;
+	max-width: 35rem;
+	height: 12rem;
+	width: 17rem;
+	background-color: #eee;
+	overflow: hidden;
+}

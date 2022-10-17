@@ -1,0 +1,28 @@
+.Container {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.QuestionHeader {
+  border: 1px solid #6366f1;
+  box-shadow: 0 0 10px #aaa;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.QuestionHeader h3 {
+  font-weight: 600;
+  color: 222;
+  padding-bottom: 0.5rem;
+}
+
+.Options {
+  margin-top: 3.5rem;
+}
+
+.Choice {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #444;
+  padding: 0.7rem 0 0 4px;
+}

@@ -1,0 +1,9 @@
+.Footer {
+	/* position: fixed; */
+	/* bottom: 0; */
+	width: 100%;
+	min-height: 4rem;
+	/* left: 0; */
+	background-color: white;
+	box-shadow: 2px 0 10px #aaa;
+}

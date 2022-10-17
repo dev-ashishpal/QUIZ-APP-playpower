@@ -1,0 +1,89 @@
+.Container {
+  margin: 5rem auto;
+  width: 90%;
+}
+
+.Header {
+  text-align: center;
+}
+
+.Header h1 {
+  font-weight: 400;
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 600px) {
+  .Header h1 {
+    font-size: 2.4rem;
+  }
+}
+
+.Box {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+.BoxInner {
+  box-shadow: 0 0 5px #aaa;
+  width: 30rem;
+  padding: 1.5rem 2rem 0.7rem 2rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.BoxInner h2 {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  color: #444;
+}
+
+.Score {
+  margin-top: 2rem;
+  font-weight: 600;
+  font-size: 2.5rem;
+}
+
+.Grade {
+  margin-top: 1rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: red;
+}
+
+.Detail {
+  text-align: center;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.Detail button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  font-style: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.Detail span:last-of-type svg {
+  width: 1rem;
+  height: 1rem;
+  margin-bottom: -2px;
+  margin-left: 10px;
+}
+
+.RedirectBtn {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.RedirectBtn a {
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  background-color: #4ade80;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #4ade80;
+  width: 10rem;
+}
