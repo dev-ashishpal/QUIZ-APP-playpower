@@ -36,7 +36,8 @@ export const quiz = {
       },
       {
         ques: 4,
-        question: "Which of the following is not javascript data types?",
+        question:
+          "Which of the following object is the main entry point to all client-side JavaScript features and APIs?",
         answer: "",
         correctAnswer: "Window",
         options: ["Position", "Window", "Standard", "Location"],
@@ -56,7 +57,7 @@ export const quiz = {
         ques: 6,
         question: "What does JavaScript debugger do?",
         answer: "",
-        correctAnswer: "It acts as a breakpoint in  a program",
+        correctAnswer: "It acts as a breakpoint in a program",
         options: [
           "It will debug all the errors in the program at runtime",
           "It acts as a breakpoint in a program",
