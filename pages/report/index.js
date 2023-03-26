@@ -12,19 +12,16 @@ import SummaryCard from "../../components/SummaryCard/SummaryCard";
 import SEO from "../../components/SEO";
 
 const ReportSummary = () => {
-  // Declaring and Initializing variables.
   const router = useRouter();
   const [openModal, setOpenModal] = useState(false);
   const { value } = useContext(ReportContext);
   const score = 0;
   const totalScore = value?.length;
 
-  // Redirect to homepage if the invitation code is not found.
   useEffect(() => {
     if (!value) router.replace("/");
   }, [value]);
 
-  // calculating score for each question.
   for (let val of value) {
     if (val.type == "multiple") {
       let flag = checkAnswer(val);
@@ -37,11 +34,9 @@ const ReportSummary = () => {
   const percent = score / totalScore;
   const { name, color } = grade(percent);
 
-  // Function to open Modal.
   const openHandler = () => {
     setOpenModal(true);
   };
-  // Function to close Modal.
   const closeHandler = () => {
     setOpenModal(false);
   };

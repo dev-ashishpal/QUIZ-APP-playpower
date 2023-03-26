@@ -1,16 +1,10 @@
 import React, { useState, useRef, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
-
 import { BsArrowRight, BsXLg } from "react-icons/bs";
-
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import SEO from "../components/SEO";
-
-// import { getDoc, doc } from "firebase/firestore";
-
 import { quiz } from "../external";
-
 import classes from "../styles/Home.module.css";
 import Box from "../components/Box/Box";
 import Button from "../components/UI/Button/Button";
@@ -18,35 +12,25 @@ import Button from "../components/UI/Button/Button";
 import { InvitationContext } from "../context/invitation";
 
 const Home = () => {
-  // calling router.
   const router = useRouter();
-
-  // creating a state.
   const [expectedCode, setExpectedCode] = useState();
-
-  // using context api
   const { setValue } = useContext(InvitationContext);
-
-  // Creating Ref for DOM Manipulation on small screen device.
   const layoutRef = useRef();
   const layoutRightRef = useRef();
   const layoutLeftRef = useRef();
 
-  // Function to toggle screen on small screen device.
   const toggleLayout = () => {
     layoutRef.current.classList.toggle(classes.LayoutToggle);
     layoutRightRef.current.classList.toggle(classes.LayoutRightToggle);
     layoutLeftRef.current.classList.toggle(classes.LayoutLeftToggle);
   };
 
-  // Function to handle change in input
   const inputChangeHandler = (e) => {
     const val = e.target.value;
     setValue(e.target.value);
     setExpectedCode(e.target.value);
   };
 
-  // Function to check if invitation code is exists or not.
   const joinAssess = async () => {
     if(expectedCode in quiz) {
       router.push('/instruction');
@@ -67,7 +51,6 @@ const Home = () => {
   return (
     <SEO title="Homepage">
     <section>
-      {/* popup modal on error. */}
       <ToastContainer
         position="top-center"
         autoClose={5000}
