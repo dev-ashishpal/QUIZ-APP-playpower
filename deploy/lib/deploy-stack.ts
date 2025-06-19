@@ -15,7 +15,7 @@ export class DeployStack extends cdk.Stack {
             pipelineName: "MyPipeline",
             synth: new ShellStep("Synth", {
                 input: CodePipelineSource.gitHub(
-                    "dev-ashishpal/QUIZ-APP-playpower-",
+                    "dev-ashishpal/QUIZ-APP-playpower",
                     "main"
                 ),
                 commands: ["npm ci", "npm run build", "npx cdk synth"],
