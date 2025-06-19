@@ -16,7 +16,11 @@ export class DeployStack extends cdk.Stack {
             synth: new ShellStep("Synth", {
                 input: CodePipelineSource.gitHub(
                     "dev-ashishpal/QUIZ-APP-playpower",
-                    "main"
+                    "main",
+                    {
+                        authentication:
+                            cdk.SecretValue.secretsManager("github-token"),
+                    }
                 ),
                 commands: ["npm ci", "npm run build", "npx cdk synth"],
             }),
